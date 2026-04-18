@@ -6,7 +6,7 @@
 
 For a detailed list of modifications and technical fixes, please see [makehuman/UPDATE_FACSHUMAN.md](makehuman/UPDATE_FACSHUMAN.md).
 
-See README.md of the [Original FACHuman repositorie](https://github.com/montybot/FACSHuman) for the files needed to use the FACSHuman plugins.
+See README.md of the [Original FACHuman repository](https://github.com/montybot/FACSHuman) for the files needed to use the FACSHuman plugins.
 You do not need the 7_FACSHuman.py (main program), 8_FACSAnim.py (to create facial animation), 9_FACS_scene_editor.py (to edit/create scene) files as they are already inside the makehuman plugins directory.
 
 If you want it to use it with the latest precompiled python 3 version of MakeHuman, you can download them here : 
