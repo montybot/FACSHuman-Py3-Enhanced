@@ -198,7 +198,7 @@ class Image(object):
             fmt = image_qt.QtGui.QImage.Format_ARGB32
             data = self.data
         return image_qt.QtGui.QImage(
-            data.tostring(), data.shape[1], data.shape[0], fmt)
+            data.tobytes(), data.shape[1], data.shape[0], fmt).copy()
 
     def resized_(self, width, height, filter=FILTER_NEAREST):
         if filter == FILTER_NEAREST:

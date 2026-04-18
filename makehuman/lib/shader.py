@@ -128,12 +128,12 @@ class VectorUniform(Uniform):
         if data is None:
             self.set(self.values)
             return
-        values = np.asarray(data, dtype=self.dtype).reshape(self.dims)
+        values = np.ascontiguousarray(data, dtype=self.dtype).reshape(self.dims)
         if len(self.dims) > 1:
             self.glfunc(self.location, 1, GL_TRUE, values)
         else:
             try:
-                self.glfunc(self.location, len(values) // self.dims[0], values)
+                self.glfunc(self.location, values.size // self.dims[0], values)
             except GLerror as err:
               log.error("%s", err.description)
 

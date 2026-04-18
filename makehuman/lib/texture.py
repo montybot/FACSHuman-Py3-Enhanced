@@ -164,7 +164,8 @@ class Texture(object):
         if isinstance(image, str):
             image = Image(image)
 
-        pixels = image.flip_vertical().data
+        import numpy as np
+        pixels = np.ascontiguousarray(image.flip_vertical().data)
 
         self.initTexture(image.width, image.height, image.components, pixels)
 
@@ -177,7 +178,8 @@ class Texture(object):
 
         internalFormat, format = self.getFormat(image.components)
 
-        pixels = image.flip_vertical().data
+        import numpy as np
+        pixels = np.ascontiguousarray(image.flip_vertical().data)
 
         if image.height == 1:
             glBindTexture(GL_TEXTURE_1D, self.textureId)

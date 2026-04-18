@@ -395,13 +395,14 @@ Homepage: %s""" % (self.author, self.license, self.copyright, self.homepage)
     def toNumpyString(self):
         def _packStringDict(stringDict):
             import numpy as np
-            text = ''
+            text = b''
             index = []
             for key,value in list(stringDict.items()):
-                index.append(len(key))
-                index.append(len(value))
-                text += key + value
-            text = np.fromstring(text, dtype='S1')
+                index.append(len(text))
+                text += key.encode('utf-8')
+                index.append(len(text))
+                text += value.encode('utf-8')
+            text = np.frombuffer(text, dtype='S1')
             index = np.array(index, dtype=np.uint32)
             return np.array([text, index], dtype=object)
 
@@ -412,14 +413,17 @@ Homepage: %s""" % (self.author, self.license, self.copyright, self.homepage)
             stringDict = dict()
             last = 0
             for i in range(0,len(index), 2):
-                l_key = index[i]
-                l_val = index[i+1]
+                l_key_start = index[i]
+                l_key_end = index[i+1]
+                if i + 2 < len(index):
+                    l_val_end = index[i+2]
+                else:
+                    l_val_end = len(text)
 
-                key = str(text[last:last+l_key].tostring(), 'utf8')
-                val = str(text[last+l_key:last+l_key+l_val].tostring(), 'utf8')
+                key = str(text[l_key_start:l_key_end].tobytes(), 'utf8')
+                val = str(text[l_key_end:l_val_end].tobytes(), 'utf8')
                 stringDict[key] = val
 
-                last += (l_key + l_val)
             return stringDict
 
         if index is None:

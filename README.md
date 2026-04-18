@@ -1,3 +1,13 @@
+# MakeHuman - Customized GPU & FACSHuman Python 3 Version
+
+**Important:** This is a customized version of MakeHuman specifically optimized for modern computers with dedicated GPUs (NVIDIA/AMD). It includes critical fixes for NumPy 2.x and Python 3.11+ compatibility.
+
+**Key Feature:** This version includes the **FACSHuman plugin suite** fully updated and ported to **Python 3**, enabling advanced facial action coding and animation in modern environments.
+
+For a detailed list of modifications and technical fixes, please see [makehuman/UPDATE_FACSHUMAN.md](makehuman/UPDATE_FACSHUMAN.md).
+
+---
+
 # MakeHuman
 
 This is the main source code for the MakeHuman application as such. See "Getting started" below for instructions on how to get MakeHuman up and running. Mac users
